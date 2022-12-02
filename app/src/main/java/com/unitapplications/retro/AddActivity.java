@@ -33,13 +33,14 @@ public class AddActivity extends AppCompatActivity {
      apiSet = retrofit.create(ApiSet.class);
 
         save.setOnClickListener(view -> {
-            if (header_et!=null){
+            if (header_et.getText().toString().equals("")){
+                header_et.setError("Name is Empty");
+            }
+            else{
                 String hearder_str = header_et.getText().toString();
                 header_et.setText("");
                 setMeme(hearder_str);
 
-            }else{
-                header_et.setError("Name is Empty");
             }
         });
 
