@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.unitapplications.retro.Adapters.MemeAdapter;
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 //        memeList.add(new MemeModel("imran","imran.jpg"));
 //        memeList.add(new MemeModel("imran1","imran.jpg"));
 //        memeList.add(new MemeModel("imran1","imran.jpg"));
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(view -> {
+        startActivity(new Intent(MainActivity.this,AddActivity.class));
+        });
 
         rv=findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -73,25 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG2", "onFailure: "+t.getLocalizedMessage());
             }
         });
-      /*  Call<List<MemeModel>> call = ApiClient.getInstance()
-                .getApi()
-                .getMemes();
-        call.enqueue(new Callback<List<MemeModel>>() {
-            @Override
-            public void onResponse(Call<List<MemeModel>> call, Response<List<MemeModel>> response) {
-                //memeList = new ArrayList<>();
-                memeList=response.body();
-                Log.d("TAG2", "onResponse: Successful");
-                adapter = new MemeAdapter(MainActivity.this,memeList);
-                adapter.updatememeList(memeList);
-                rv.setAdapter(adapter);
-            }
 
-            @Override
-            public void onFailure(Call<List<MemeModel>> call, Throwable t) {
-                Log.d("TAG2", "onFailure: "+t);
-            }
-        });*/
     }
     public void setAdapter(List<MemeModel> memeModels){
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
